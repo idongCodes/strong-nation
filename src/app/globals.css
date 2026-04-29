@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-rubik-dirt), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-brand-purple: #8A2BE2; /* A vibrant purple */
+}
+
+body {
+  background-color: black;
+  color: white;
+}
