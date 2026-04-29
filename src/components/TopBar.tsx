@@ -6,11 +6,35 @@ export default function TopBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8A2BE2" className="w-8 h-8">
-                <path d="M4.5 9h-3a1.5 1.5 0 00-1.5 1.5v3A1.5 1.5 0 001.5 15h3v3a1.5 1.5 0 001.5 1.5h1.5A1.5 1.5 0 009 18v-1.5h6V18a1.5 1.5 0 001.5 1.5H18a1.5 1.5 0 001.5-1.5v-3h3a1.5 1.5 0 001.5-1.5v-3A1.5 1.5 0 0022.5 9h-3V6A1.5 1.5 0 0018 4.5h-1.5A1.5 1.5 0 0015 6v1.5H9V6A1.5 1.5 0 007.5 4.5H6A1.5 1.5 0 004.5 6v3z"/>
-              </svg>
-              <span className="text-white text-2xl tracking-wider uppercase pt-1">Strong Nation</span>
+            <Link href="/" className="flex items-center group">
+              <div className="relative inline-block px-4 py-1 flex items-center justify-center">
+                {/* SVG Filter Brush stroke background layer */}
+                <div className="absolute inset-0 z-0 w-full h-full text-[#8A2BE2]">
+                  <svg className="w-full h-full" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <filter id="brush-texture" x="-10%" y="-20%" width="120%" height="140%">
+                        {/* Generates noise */}
+                        <feTurbulence type="fractalNoise" baseFrequency="0.08 0.15" numOctaves="4" result="noise" />
+                        {/* Displaces the rectangle using the noise to create jagged edges */}
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
+                      </filter>
+                    </defs>
+                    <rect 
+                      x="4%" 
+                      y="15%" 
+                      width="92%" 
+                      height="70%" 
+                      fill="currentColor" 
+                      filter="url(#brush-texture)" 
+                      className="origin-center -rotate-1"
+                    />
+                  </svg>
+                </div>
+                {/* Text layer */}
+                <span className="relative text-white text-xl tracking-widest uppercase pt-1 z-10 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                  Strong Nation
+                </span>
+              </div>
             </Link>
           </div>
         </div>
