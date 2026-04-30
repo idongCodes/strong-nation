@@ -31,6 +31,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQs Section */}
+      <section id="faqs" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl text-center text-[#8A2BE2] mb-10 tracking-widest uppercase drop-shadow-md">
+            FAQs
+          </h2>
+          <div className="space-y-6" style={{ fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
+            <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
+              <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">I want to join but I am concerned about childcare...</h3>
+              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+            </div>
+            <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
+              <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">Do I need any kind of membership to join?</h3>
+              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+            </div>
+            <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
+              <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">Are there any age restrictions?</h3>
+              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+            </div>
+            <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
+              <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">How long is each session?</h3>
+              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+            </div>
+            <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
+              <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">Who is this organised by?</h3>
+              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
         <div className="max-w-3xl mx-auto">
