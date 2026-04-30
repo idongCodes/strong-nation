@@ -17,6 +17,20 @@ export default function Home() {
         {/* Hero Content (Removed for now) */}
       </section>
 
+      {/* About Section */}
+      <section id="about" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl text-center text-[#8A2BE2] mb-10 tracking-widest uppercase drop-shadow-md">
+            About Strong Nation
+          </h2>
+          <p className="text-lg text-zinc-300 leading-relaxed" style={{ fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
+            Strong Nation is dedicated to building a community of resilience, strength, and continuous improvement. 
+            We believe in pushing boundaries, both physically and mentally, to achieve greatness. Join us on our 
+            journey to empower individuals and create a lasting impact.
+          </p>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
         <div className="max-w-3xl mx-auto">
