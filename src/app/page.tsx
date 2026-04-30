@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   return (
@@ -16,8 +17,16 @@ export default function Home() {
         {/* Hero Content (Removed for now) */}
       </section>
 
-      {/* Spacer to demonstrate the gradient blending into the black page body */}
-      <div className="h-64 bg-black w-full"></div>
+      {/* Contact Section */}
+      <section id="contact" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl text-center text-[#8A2BE2] mb-10 tracking-widest uppercase drop-shadow-md">
+            Contact Strong Nation
+          </h2>
+          
+          <ContactForm />
+        </div>
+      </section>
     </main>
   );
 }
