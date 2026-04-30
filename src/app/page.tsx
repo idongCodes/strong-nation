@@ -1,5 +1,6 @@
 import TopBar from "@/components/TopBar";
 import ContactForm from "@/components/ContactForm";
+import RsvpForm from "@/components/RsvpForm";
 
 export default function Home() {
   return (
@@ -28,6 +29,19 @@ export default function Home() {
             We believe in pushing boundaries, both physically and mentally, to achieve greatness. Join us on our 
             journey to empower individuals and create a lasting impact.
           </p>
+        </div>
+      </section>
+
+      {/* RSVP Section */}
+      <section id="rsvp" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl text-center text-[#8A2BE2] mb-6 tracking-widest uppercase drop-shadow-md">
+            RSVP
+          </h2>
+          <p className="text-center text-zinc-300 mb-10 leading-relaxed text-lg" style={{ fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
+            We're excited to see you join us as we get together, have fun, encourage and motivate each other every Thursday from 6:45pm. All levels welcome. Come as you are, leave stronger. Let us know you'll be joining us!
+          </p>
+          <RsvpForm />
         </div>
       </section>
 
