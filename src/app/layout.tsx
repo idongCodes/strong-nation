@@ -8,6 +8,8 @@ const rubikDirt = localFont({
   display: "swap",
 });
 
+import Footer from "@/components/Footer";
+
 export const metadata: Metadata = {
   title: "Strong Nation",
   description: "Your path to a stronger you.",
@@ -23,7 +25,10 @@ export default function RootLayout({
       lang="en"
       className={`${rubikDirt.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-black text-white">{children}</body>
+      <body className="min-h-full flex flex-col font-sans bg-black text-white">
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
