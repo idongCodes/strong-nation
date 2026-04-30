@@ -9,16 +9,9 @@ export default function Home() {
       <section className="relative w-full flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
         {/* Background Image Container */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60"
-          style={{ backgroundImage: "url('/hero-bg.png')" }}
+          className="absolute inset-0 z-0 bg-contain bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/hero-bg.jpg')" }}
         />
-        
-        {/* Gradient Overlays for the "Fade to Black" effects */}
-        {/* 1. Overall dark wash to make it almost fade into black */}
-        <div className="absolute inset-0 z-0 bg-black/50" />
-        
-        {/* 2. Strong bottom gradient fading into pure black at the bottom edge */}
-        <div className="absolute inset-x-0 bottom-0 z-0 h-3/4 bg-gradient-to-t from-black via-black/70 to-transparent" />
         
         {/* Hero Content (Removed for now) */}
       </section>
