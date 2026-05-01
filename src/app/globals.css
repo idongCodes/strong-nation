@@ -5,6 +5,10 @@
   --color-brand-purple: #8A2BE2; /* A vibrant purple */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: black;
   color: white;
