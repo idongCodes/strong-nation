@@ -52,23 +52,23 @@ export default function Home() {
           <div className="space-y-6" style={{ fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
             <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
               <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">I want to join but I am concerned about childcare...</h3>
-              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+              <p className="text-zinc-400 leading-relaxed">The YMCA offers Child Watch and Child Development services, allowing you to focus entirely on your workout while your kids are safely supervised.</p>
             </div>
             <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
               <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">Do I need any kind of membership to join?</h3>
-              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+              <p className="text-zinc-400 leading-relaxed">No strict membership is required! While YMCA memberships offer great benefits, we welcome everyone. Financial assistance is also available to ensure everyone can participate.</p>
             </div>
             <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
               <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">Are there any age restrictions?</h3>
-              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+              <p className="text-zinc-400 leading-relaxed">Our classes are designed for adults and teens, but we welcome individuals of all fitness levels. Check with the instructor if you have specific age-related concerns.</p>
             </div>
             <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
               <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">How long is each session?</h3>
-              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+              <p className="text-zinc-400 leading-relaxed">Each session typically runs for about 45 to 60 minutes. This includes a comprehensive warm-up, the main workout, and a cool-down period.</p>
             </div>
             <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-md">
               <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">Who is this organised by?</h3>
-              <p className="text-zinc-400 leading-relaxed">Placeholder answer.</p>
+              <p className="text-zinc-400 leading-relaxed">This community program is proudly organized and hosted by the YMCA of Central Massachusetts, reflecting our commitment to youth development, healthy living, and social responsibility.</p>
             </div>
           </div>
         </div>
