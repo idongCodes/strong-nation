@@ -87,18 +87,25 @@ export default function TopBar() {
             {isOpen && (
               <div className="absolute top-16 right-0 w-48 bg-zinc-950 border-l border-b border-zinc-800 shadow-xl py-2 z-40 sm:right-4 sm:rounded-b-md sm:border-r">
                 <Link 
+                  href="/" 
+                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
                   href="/#about" 
                   className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
                   onClick={() => setIsOpen(false)}
                 >
-                  About
+                  About Us
                 </Link>
                 <Link 
-                  href="/#contact" 
+                  href="/#rsvp" 
                   className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
                   onClick={() => setIsOpen(false)}
                 >
-                  Contact
+                  RSVP
                 </Link>
                 <Link 
                   href="/#faqs" 
@@ -106,6 +113,13 @@ export default function TopBar() {
                   onClick={() => setIsOpen(false)}
                 >
                   FAQs
+                </Link>
+                <Link 
+                  href="/#contact" 
+                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Contact Us
                 </Link>
               </div>
             )}
