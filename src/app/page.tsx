@@ -1,11 +1,9 @@
-import TopBar from "@/components/TopBar";
 import ContactForm from "@/components/ContactForm";
 import RsvpForm from "@/components/RsvpForm";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col bg-black">
-      <TopBar />
       
       {/* Hero Section */}
       <section className="relative w-full flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">

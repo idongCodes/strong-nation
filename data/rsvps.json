@@ -7,5 +7,14 @@
     "phone": "7743126471",
     "rsvpDate": "04/30",
     "timestamp": "2026-04-30T17:07:56.127Z"
+  },
+  {
+    "firstName": "tesr",
+    "lastName": "user",
+    "preferredName": "testUser",
+    "email": "testuser@mail.com",
+    "phone": "7743126471",
+    "rsvpDate": "04/30",
+    "timestamp": "2026-04-30T17:42:49.236Z"
   }
 ]

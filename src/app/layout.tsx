@@ -9,6 +9,7 @@ const rubikDirt = localFont({
 });
 
 import Footer from "@/components/Footer";
+import TopBar from "@/components/TopBar";
 
 export const metadata: Metadata = {
   title: "Strong Nation",
@@ -26,6 +27,7 @@ export default function RootLayout({
       className={`${rubikDirt.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-black text-white">
+        <TopBar />
         {children}
         <Footer />
       </body>
