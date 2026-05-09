@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
-import { Redis } from '@upstash/redis';
+import { Redis } from 'ioredis';
 
-// Safely instantiate Redis only if environment variables are available
 const getRedis = () => {
-  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-    return Redis.fromEnv();
+  if (process.env.REDIS_URL) {
+    return new Redis(process.env.REDIS_URL);
   }
   return null;
 };
@@ -17,9 +16,9 @@ export async function GET() {
       return NextResponse.json([]);
     }
 
-    // Fetch testimonials from KV store
-    const testimonials = await redis.get('testimonials');
-    return NextResponse.json(testimonials || []);
+    const data = await redis.get('testimonials');
+    const testimonials = data ? JSON.parse(data) : [];
+    return NextResponse.json(testimonials);
   } catch (error) {
     console.error("API GET Testimonials Error:", error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
@@ -35,8 +34,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Redis database is not configured yet.' }, { status: 500 });
     }
 
-    // Fetch existing testimonials
-    const testimonials: Record<string, unknown>[] = (await redis.get('testimonials') as Record<string, unknown>[]) || [];
+    const data = await redis.get('testimonials');
+    const testimonials: Record<string, unknown>[] = data ? JSON.parse(data) : [];
 
     const newTestimonial = {
       ...body,
@@ -44,11 +43,9 @@ export async function POST(request: Request) {
       timestamp: new Date().toISOString(),
     };
 
-    // Add to the beginning of the array so newest is first
     testimonials.unshift(newTestimonial);
 
-    // Save updated array back to KV
-    await redis.set('testimonials', testimonials);
+    await redis.set('testimonials', JSON.stringify(testimonials));
 
     return NextResponse.json(newTestimonial);
   } catch (error) {

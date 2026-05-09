@@ -1,10 +1,10 @@
-import { Redis } from '@upstash/redis';
+import { Redis } from 'ioredis';
 
 export const dynamic = 'force-dynamic';
 
 const getRedis = () => {
-  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-    return Redis.fromEnv();
+  if (process.env.REDIS_URL) {
+    return new Redis(process.env.REDIS_URL);
   }
   return null;
 };
@@ -50,7 +50,8 @@ export default async function GuestsPage() {
 
   if (redis) {
     try {
-      rsvps = (await redis.get('rsvps') as Rsvp[]) || [];
+      const data = await redis.get('rsvps');
+      rsvps = data ? JSON.parse(data) : [];
     } catch (e) {
       console.error("Failed to fetch rsvps from Redis", e);
     }
@@ -76,7 +77,7 @@ export default async function GuestsPage() {
       
       {!redis && (
         <div className="bg-yellow-900/50 border border-yellow-700 rounded-lg p-4 mb-8 text-yellow-200">
-          <strong>Warning:</strong> Database is not configured. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.
+          <strong>Warning:</strong> Database is not configured. Please set REDIS_URL environment variable.
         </div>
       )}
 
