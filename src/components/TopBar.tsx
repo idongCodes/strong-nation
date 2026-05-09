@@ -88,49 +88,49 @@ export default function TopBar() {
               <div className="absolute top-16 right-0 w-48 bg-zinc-950 border-l border-b border-zinc-800 shadow-xl py-2 z-40 sm:right-4 sm:rounded-b-md sm:border-r">
                 <Link 
                   href="/" 
-                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  className="block px-6 py-3 text-white font-semibold hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-base font-sans"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link 
                   href="/#highlights" 
-                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  className="block px-6 py-3 text-white font-semibold hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-base font-sans"
                   onClick={() => setIsOpen(false)}
                 >
                   Highlights
                 </Link>
                 <Link 
                   href="/#about" 
-                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  className="block px-6 py-3 text-white font-semibold hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-base font-sans"
                   onClick={() => setIsOpen(false)}
                 >
                   About Us
                 </Link>
                 <Link 
                   href="/#testimonials" 
-                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  className="block px-6 py-3 text-white font-semibold hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-base font-sans"
                   onClick={() => setIsOpen(false)}
                 >
                   Testimonials
                 </Link>
                 <Link 
                   href="/#rsvp" 
-                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  className="block px-6 py-3 text-white font-semibold hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-base font-sans"
                   onClick={() => setIsOpen(false)}
                 >
                   RSVP
                 </Link>
                 <Link 
                   href="/#faqs" 
-                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  className="block px-6 py-3 text-white font-semibold hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-base font-sans"
                   onClick={() => setIsOpen(false)}
                 >
                   FAQs
                 </Link>
                 <Link 
                   href="/#contact" 
-                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  className="block px-6 py-3 text-white font-semibold hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-base font-sans"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact Us
