@@ -108,6 +108,13 @@ export default function TopBar() {
                   About Us
                 </Link>
                 <Link 
+                  href="/#testimonials" 
+                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Testimonials
+                </Link>
+                <Link 
                   href="/#rsvp" 
                   className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
                   onClick={() => setIsOpen(false)}
