@@ -1,5 +1,6 @@
 import ContactForm from "@/components/ContactForm";
 import RsvpForm from "@/components/RsvpForm";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -114,6 +115,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* RSVP Section */}
       <section id="rsvp" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
