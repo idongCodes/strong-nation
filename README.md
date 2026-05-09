@@ -4,7 +4,14 @@ Welcome to the **Strong Nation** platform! This is a web application designed to
 
 ## 🎯 Purpose of the App
 
-The core purpose of this application is to serve as a digital hub for the "Strong Nation" fitness community. It provides essential information about the program (Who, What, When, Where) and, most importantly, allows participants to easily **RSVP for upcoming Thursday evening sessions**. The app is designed to be fast, accessible, and user-friendly, ensuring that anyone interested can join the community and let organizers know they are coming.
+The core purpose of this application is to serve as a digital hub for the "Strong Nation" fitness community. It provides essential information about the program (Who, What, When, Where) and allows participants to easily **RSVP for upcoming Thursday evening sessions**. The app is designed to be fast, accessible, and user-friendly, ensuring that anyone interested can join the community and let organizers know they are coming.
+
+### ✨ Key Features
+
+- **Program Highlights:** Discover what makes Strong Nation unique, including workouts synced to music, HIIT incorporation, the use of free weights, and an all-inclusive environment.
+- **Interactive Testimonials:** Read experiences from community members through a responsive carousel, and submit your own review using an interactive 5-star rating system.
+- **Dynamic RSVP System:** Easily sign up for the upcoming Thursday session.
+- **Responsive Navigation:** A sticky, fully responsive top bar allowing seamless navigation across all sections (Highlights, About Us, Testimonials, RSVP, FAQs, Contact).
 
 ## 🛠️ Tech Stack
 
@@ -23,18 +30,18 @@ Building this application presented a few interesting challenges:
 
 1.  **Dynamic Date Calculation:** The RSVP system needs to always target the *upcoming* Thursday. Implementing logic to correctly calculate this date, especially handling the edge case of when a user visits on a Thursday evening after the class has started (and thus needs to RSVP for the *following* week), required careful date manipulation.
 2.  **File-Based Data Management:** Opting for a lightweight file-based approach (`fs` module reading/writing to `rsvps.json`) instead of a full database meant handling potential concurrency issues manually, ensuring the data directory exists on startup, and safely parsing JSON data.
-3.  **State Management:** Creating a seamless user experience during the RSVP process required managing multiple states (idle, submitting, success, error) and providing immediate, clear visual feedback without full page reloads.
+3.  **State Management:** Creating a seamless user experience during the RSVP process and the Testimonials submission required managing multiple states (idle, submitting, success, error) and providing immediate, clear visual feedback without full page reloads.
 
 ## 🚀 Potential Future Improvements
 
 There is always room to grow! Here are some planned or potential improvements for the future:
 
 ### Codebase & Architecture
-- **Database Migration:** Transition from the local `rsvps.json` file to a robust database (e.g., PostgreSQL with Prisma, or MongoDB) to handle scale and concurrent writes better.
+- **Database Migration:** Transition from the local `rsvps.json` file and in-memory Testimonials to a robust database (e.g., PostgreSQL with Prisma, or MongoDB) to handle scale and concurrent writes better.
 - **Validation:** Implement a schema validation library like **Zod** for strict type checking and validation on both the client-side form submissions and the API route.
 
 ### User Experience (UX)
-- **Admin Dashboard:** Create a secured route for organizers to easily view, manage, and export the list of RSVPs.
+- **Admin Dashboard:** Create a secured route for organizers to easily view, manage, and export the list of RSVPs and moderate Testimonials.
 - **Notifications:** Integrate an email or SMS service (like Resend or Twilio) to send automatic confirmation messages to users when they RSVP.
 - **Calendar Integration:** Add "Add to Calendar" (Google, Apple, Outlook) buttons on the success state of the RSVP form.
 
