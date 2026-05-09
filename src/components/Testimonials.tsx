@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type Review = {
   id: string;
   name: string;
   text: string;
   rating: number;
+  timestamp?: string;
 };
 
 export default function Testimonials() {
@@ -17,24 +18,53 @@ export default function Testimonials() {
   const [hoverRating, setHoverRating] = useState(0);
   const [name, setName] = useState('');
   const [text, setText] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    async function fetchReviews() {
+      try {
+        const res = await fetch('/api/testimonials');
+        if (res.ok) {
+          const data = await res.json();
+          setReviews(data);
+        }
+      } catch (error) {
+        console.error("Failed to load testimonials:", error);
+      }
+    }
+    fetchReviews();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !text || rating === 0) return;
+    if (!name || !text || rating === 0 || isSubmitting) return;
 
-    const newReview: Review = {
-      id: Date.now().toString(),
-      name,
-      text,
-      rating,
-    };
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/testimonials', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, text, rating }),
+      });
 
-    setReviews([newReview, ...reviews]);
-    setName('');
-    setText('');
-    setRating(0);
-    setHoverRating(0);
-    setCurrentIndex(0); // Jump back to the newest review
+      if (res.ok) {
+        const newReview = await res.json();
+        setReviews([newReview, ...reviews]);
+        setName('');
+        setText('');
+        setRating(0);
+        setHoverRating(0);
+        setCurrentIndex(0); // Jump back to the newest review
+      } else {
+        console.error("Failed to submit review");
+      }
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const nextSlide = () => {
@@ -170,10 +200,10 @@ export default function Testimonials() {
 
             <button
               type="submit"
-              disabled={!name || !text || rating === 0}
+              disabled={!name || !text || rating === 0 || isSubmitting}
               className="w-full px-8 py-4 bg-[#8A2BE2] text-white font-bold rounded-md uppercase tracking-wider hover:bg-purple-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#8A2BE2] shadow-[0_0_15px_rgba(138,43,226,0.3)] hover:shadow-[0_0_25px_rgba(138,43,226,0.5)]"
             >
-              Submit Review
+              {isSubmitting ? 'Submitting...' : 'Submit Review'}
             </button>
           </form>
         </div>
