@@ -1,33 +1,25 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { Redis } from '@upstash/redis';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const TESTIMONIALS_FILE = path.join(DATA_DIR, 'testimonials.json');
-
-// Helper to safely read testimonials
-function getTestimonials() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR);
+// Safely instantiate Redis only if environment variables are available
+const getRedis = () => {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    return Redis.fromEnv();
   }
-  
-  if (fs.existsSync(TESTIMONIALS_FILE)) {
-    const fileData = fs.readFileSync(TESTIMONIALS_FILE, 'utf-8');
-    if (fileData) {
-      try {
-        return JSON.parse(fileData);
-      } catch (e) {
-        console.error("Error parsing testimonials.json", e);
-      }
-    }
-  }
-  return [];
-}
+  return null;
+};
 
 export async function GET() {
   try {
-    const testimonials = getTestimonials();
-    return NextResponse.json(testimonials);
+    const redis = getRedis();
+    if (!redis) {
+      console.warn("Redis environment variables not set. Returning empty testimonials.");
+      return NextResponse.json([]);
+    }
+
+    // Fetch testimonials from KV store
+    const testimonials = await redis.get('testimonials');
+    return NextResponse.json(testimonials || []);
   } catch (error) {
     console.error("API GET Testimonials Error:", error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
@@ -37,7 +29,14 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const testimonials = getTestimonials();
+    const redis = getRedis();
+
+    if (!redis) {
+      return NextResponse.json({ error: 'Redis database is not configured yet.' }, { status: 500 });
+    }
+
+    // Fetch existing testimonials
+    const testimonials: Record<string, unknown>[] = (await redis.get('testimonials') as Record<string, unknown>[]) || [];
 
     const newTestimonial = {
       ...body,
@@ -48,7 +47,8 @@ export async function POST(request: Request) {
     // Add to the beginning of the array so newest is first
     testimonials.unshift(newTestimonial);
 
-    fs.writeFileSync(TESTIMONIALS_FILE, JSON.stringify(testimonials, null, 2));
+    // Save updated array back to KV
+    await redis.set('testimonials', testimonials);
 
     return NextResponse.json(newTestimonial);
   } catch (error) {

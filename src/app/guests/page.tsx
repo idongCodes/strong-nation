@@ -1,7 +1,23 @@
-import fs from 'fs';
-import path from 'path';
+import { Redis } from '@upstash/redis';
 
 export const dynamic = 'force-dynamic';
+
+const getRedis = () => {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    return Redis.fromEnv();
+  }
+  return null;
+};
+
+type Rsvp = {
+  firstName: string;
+  lastName: string;
+  preferredName?: string;
+  email?: string;
+  phone?: string;
+  rsvpDate: string;
+  timestamp: string;
+};
 
 function getCutoffs() {
   const now = new Date();
@@ -29,25 +45,24 @@ function getCutoffs() {
 }
 
 export default async function GuestsPage() {
-  const dataDir = path.join(process.cwd(), 'data');
-  const rsvpsFile = path.join(dataDir, 'rsvps.json');
-  
-  let rsvps: any[] = [];
-  if (fs.existsSync(rsvpsFile)) {
-    const fileData = fs.readFileSync(rsvpsFile, 'utf-8');
-    if (fileData) {
-      try {
-        rsvps = JSON.parse(fileData);
-      } catch (e) {
-        console.error("Failed to parse rsvps.json", e);
-      }
+  let rsvps: Rsvp[] = [];
+  const redis = getRedis();
+
+  if (redis) {
+    try {
+      rsvps = (await redis.get('rsvps') as Rsvp[]) || [];
+    } catch (e) {
+      console.error("Failed to fetch rsvps from Redis", e);
     }
+  } else {
+    console.warn("Redis is not configured. Cannot load RSVPs.");
   }
 
   const { startCutoff, endCutoff } = getCutoffs();
 
   // Filter for the upcoming class
-  const upcomingRsvps = rsvps.filter((r: any) => {
+  const upcomingRsvps = rsvps.filter((r: Rsvp) => {
+    if (!r.timestamp) return false;
     const ts = new Date(r.timestamp).getTime();
     return ts >= startCutoff.getTime() && ts < endCutoff.getTime();
   });
@@ -59,6 +74,12 @@ export default async function GuestsPage() {
     <main className="flex-1 w-full max-w-6xl mx-auto p-4 md:p-8 pt-20 md:pt-24">
       <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-[#8A2BE2] uppercase tracking-wider" style={{ fontFamily: 'var(--font-rubik-dirt), ui-sans-serif, system-ui, sans-serif' }}>Guest RSVPs</h1>
       
+      {!redis && (
+        <div className="bg-yellow-900/50 border border-yellow-700 rounded-lg p-4 mb-8 text-yellow-200">
+          <strong>Warning:</strong> Database is not configured. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.
+        </div>
+      )}
+
       <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-5 md:p-6 mb-8 shadow-[0_0_15px_rgba(138,43,226,0.15)]">
         <h2 className="text-lg md:text-xl font-semibold mb-2 text-zinc-300 uppercase tracking-wide">Upcoming Class Headcount</h2>
         <p className="text-xs md:text-sm text-zinc-400 mb-4">
@@ -78,7 +99,7 @@ export default async function GuestsPage() {
             No RSVPs for the upcoming class yet.
           </div>
         ) : (
-          sortedUpcoming.map((rsvp: any, idx: number) => (
+          sortedUpcoming.map((rsvp: Rsvp, idx: number) => (
             <div key={idx} className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 shadow-md flex flex-col gap-2">
               <div className="flex justify-between items-start">
                 <span className="font-bold text-lg text-white">{rsvp.firstName} {rsvp.lastName}</span>
@@ -120,7 +141,7 @@ export default async function GuestsPage() {
                 </td>
               </tr>
             ) : (
-              sortedUpcoming.map((rsvp: any, idx: number) => (
+              sortedUpcoming.map((rsvp: Rsvp, idx: number) => (
                 <tr key={idx} className="hover:bg-zinc-800/50 transition-colors text-sm text-zinc-200">
                   <td className="px-6 py-4 whitespace-nowrap font-medium">{rsvp.firstName} {rsvp.lastName}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{rsvp.preferredName || '-'}</td>
@@ -146,7 +167,7 @@ export default async function GuestsPage() {
             No RSVPs found.
           </div>
         ) : (
-          sortedAll.map((rsvp: any, idx: number) => (
+          sortedAll.map((rsvp: Rsvp, idx: number) => (
             <div key={idx} className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 shadow-md flex flex-col gap-2">
               <div className="flex justify-between items-start">
                 <span className="font-bold text-lg text-white">{rsvp.firstName} {rsvp.lastName}</span>
@@ -188,7 +209,7 @@ export default async function GuestsPage() {
                 </td>
               </tr>
             ) : (
-              sortedAll.map((rsvp: any, idx: number) => (
+              sortedAll.map((rsvp: Rsvp, idx: number) => (
                 <tr key={idx} className="hover:bg-zinc-800/50 transition-colors text-sm text-zinc-200">
                   <td className="px-6 py-4 whitespace-nowrap font-medium">{rsvp.firstName} {rsvp.lastName}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{rsvp.preferredName || '-'}</td>

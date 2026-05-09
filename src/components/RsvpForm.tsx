@@ -25,7 +25,11 @@ export default function RsvpForm() {
       return `${mm}/${dd}`;
     };
 
-    setUpcomingDate(getUpcomingThursday());
+    // Avoid synchronous setState in effect
+    const timeoutId = setTimeout(() => {
+      setUpcomingDate(getUpcomingThursday());
+    }, 0);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

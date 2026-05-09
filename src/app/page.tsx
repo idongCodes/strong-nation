@@ -126,7 +126,7 @@ export default function Home() {
             RSVP
           </h2>
           <p className="text-center text-zinc-300 mb-10 leading-relaxed text-lg" style={{ fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
-            We're excited to see you join us as we get together, have fun, encourage and motivate each other every Thursday from 6:45pm. All levels welcome. Come as you are, leave stronger. Let us know you'll be joining us!
+            We&apos;re excited to see you join us as we get together, have fun, encourage and motivate each other every Thursday from 6:45pm. All levels welcome. Come as you are, leave stronger. Let us know you&apos;ll be joining us!
           </p>
           <RsvpForm />
         </div>
