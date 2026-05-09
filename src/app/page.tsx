@@ -16,6 +16,56 @@ export default function Home() {
         {/* Hero Content (Removed for now) */}
       </section>
 
+      {/* Highlights Section */}
+      <section id="highlights" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl text-center text-[#8A2BE2] mb-12 tracking-widest uppercase drop-shadow-md">
+            Program Highlights
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center" style={{ fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
+            <div className="bg-zinc-950 border border-zinc-800 p-8 rounded-md shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+              <div className="text-[#8A2BE2] mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">Synced to Music</h3>
+              <p className="text-zinc-400">Every beat is perfectly synced to match each move, driving you to push past your limits.</p>
+            </div>
+            
+            <div className="bg-zinc-950 border border-zinc-800 p-8 rounded-md shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+              <div className="text-[#8A2BE2] mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">HIIT Incorporation</h3>
+              <p className="text-zinc-400">High-Intensity Interval Training burns more calories and keeps your metabolism elevated.</p>
+            </div>
+
+            <div className="bg-zinc-950 border border-zinc-800 p-8 rounded-md shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+              <div className="text-[#8A2BE2] mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">Free Weights</h3>
+              <p className="text-zinc-400">Strategically incorporates free weights to build muscle, enhance strength, and tone your body.</p>
+            </div>
+
+            <div className="bg-zinc-950 border border-zinc-800 p-8 rounded-md shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+              <div className="text-[#8A2BE2] mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">All Levels Welcome</h3>
+              <p className="text-zinc-400">Modifications and options available so everyone can get a safe and effective workout.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section id="about" className="w-full bg-black py-20 px-4 sm:px-6 lg:px-8 border-t border-zinc-900">
         <div className="max-w-4xl mx-auto text-center">

@@ -94,6 +94,13 @@ export default function TopBar() {
                   Home
                 </Link>
                 <Link 
+                  href="/#highlights" 
+                  className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Highlights
+                </Link>
+                <Link 
                   href="/#about" 
                   className="block px-6 py-3 text-white hover:bg-black hover:text-[#8A2BE2] transition-colors duration-200 uppercase tracking-wider text-sm font-sans"
                   onClick={() => setIsOpen(false)}
