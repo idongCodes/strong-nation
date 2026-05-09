@@ -1,42 +1,37 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { Redis } from '@upstash/redis';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const RSVPS_FILE = path.join(DATA_DIR, 'rsvps.json');
+// Safely instantiate Redis only if environment variables are available
+const getRedis = () => {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    return Redis.fromEnv();
+  }
+  return null;
+};
 
 export async function POST(request: Request) {
   try {
-    // Ensure data directory exists
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR);
-    }
-
     const body = await request.json();
     const now = new Date();
+    const redis = getRedis();
 
-    // Read existing RSVPs
-    let rsvps: any[] = [];
-    if (fs.existsSync(RSVPS_FILE)) {
-      const fileData = fs.readFileSync(RSVPS_FILE, 'utf-8');
-      if (fileData) {
-        try {
-          rsvps = JSON.parse(fileData);
-        } catch (e) {
-          console.error("Error parsing rsvps.json", e);
-        }
-      }
+    if (!redis) {
+      return NextResponse.json({ error: 'Redis database is not configured yet.' }, { status: 500 });
     }
 
-    // Add new RSVP
+    // Fetch existing RSVPs
+    const rsvps: Record<string, unknown>[] = (await redis.get('rsvps') as Record<string, unknown>[]) || [];
+
     const newRsvp = {
       ...body,
       timestamp: now.toISOString(),
     };
+    
+    // Add new RSVP
     rsvps.push(newRsvp);
 
-    // Save back to file
-    fs.writeFileSync(RSVPS_FILE, JSON.stringify(rsvps, null, 2));
+    // Save updated array back to KV
+    await redis.set('rsvps', rsvps);
 
     return NextResponse.json({ success: true });
   } catch (error) {

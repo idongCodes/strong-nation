@@ -121,7 +121,7 @@ export default function Testimonials() {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-zinc-300 flex-grow italic mb-6 leading-relaxed">"{review.text}"</p>
+                    <p className="text-zinc-300 flex-grow italic mb-6 leading-relaxed">&quot;{review.text}&quot;</p>
                     <p className="text-[#8A2BE2] font-bold uppercase tracking-widest text-sm">- {review.name}</p>
                   </div>
                 ))}
